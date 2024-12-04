@@ -1,0 +1,32 @@
+/* Add this to your styles */
+@keyframes chartAnimation {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pie-chart-enter {
+  animation: chartAnimation 1s ease-out forwards;
+}
+
+.segment:hover {
+  fill: #ff5900;
+  transition: 200ms;
+  stroke-width: 0;
+}
+
+g:hover .pie-segment-title,
+g:hover .tooltip-background {
+  opacity: 1;
+  transform: translateY(0); /* Move title into place */
+  font-size: 14px; /* Fancy golden color */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+g:hover .label, g:hover line {
+    opacity: 0;
+}

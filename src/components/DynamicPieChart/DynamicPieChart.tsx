@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 
 const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
   const [inView, setInView] = useState(false);
+  const [displayLabels, setDisplayLabels] = useState(true);
   const { ref, inView: isInView } = useInView({
     triggerOnce: true, // Trigger animation only once when in view
     threshold: 0.5, // Trigger when 50% of the component is in view
@@ -47,147 +48,157 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
       style={{ width: "100%", height: "auto", background: "transparent" }}
       className={inView ? "pie-chart-enter" : ""}
     >
-      {data.sort((a,b) => a.value - b.value).map((item, index) => {
-        const startAngle = index * anglePerSegment;
-        const endAngle = startAngle + anglePerSegment;
-        const midpointAngle = (startAngle + endAngle) / 2; // Angle at the center of the arc
-        const normalizedValue =
-          item.value / Math.max(...data.map((d) => d.value));
-        const radius = baseRadius + normalizedValue * (maxRadius - baseRadius); // Proportional height
+      {data
+        .sort((a, b) => a.value - b.value)
+        .map((item, index) => {
+          const startAngle = index * anglePerSegment;
+          const endAngle = startAngle + anglePerSegment;
+          const midpointAngle = (startAngle + endAngle) / 2; // Angle at the center of the arc
+          const normalizedValue =
+            item.value / Math.max(...data.map((d) => d.value));
+          const radius =
+            baseRadius + normalizedValue * (maxRadius - baseRadius); // Proportional height
 
-        // Arc midpoint coordinates
-        const arcMidX = centerX + radius * Math.cos(midpointAngle);
-        const arcMidY = centerY + radius * Math.sin(midpointAngle);
+          // Arc midpoint coordinates
+          const arcMidX = centerX + radius * Math.cos(midpointAngle);
+          const arcMidY = centerY + radius * Math.sin(midpointAngle);
 
-        // Label coordinates (further out)
-        const labelRadius = radius + 35; // Add padding to push labels outward
-        const labelX = centerX + labelRadius * Math.cos(midpointAngle);
-        const labelY = centerY + labelRadius * Math.sin(midpointAngle);
+          // Label coordinates (further out)
+          const labelRadius = radius + 35; // Add padding to push labels outward
+          const labelX = centerX + labelRadius * Math.cos(midpointAngle);
+          const labelY = centerY + labelRadius * Math.sin(midpointAngle);
 
-        const arcXEnd = centerX + labelRadius * Math.cos(midpointAngle) * 0.9;
-        const arcYEnd = centerY + labelRadius * Math.sin(midpointAngle) * 0.9;
+          const arcXEnd = centerX + labelRadius * Math.cos(midpointAngle) * 0.9;
+          const arcYEnd = centerY + labelRadius * Math.sin(midpointAngle) * 0.9;
 
-        const path = calculateArcPath(startAngle, endAngle, radius);
-        const maxLightness = 0; // Brightest blue
-        const minLightness = 100; // Darkest blue
-        const lightness =
-          minLightness + (1 - normalizedValue) * (maxLightness - minLightness);
-        const color = `hsl(220, 50%, ${lightness}%)`;
+          const path = calculateArcPath(startAngle, endAngle, radius);
+          const maxLightness = 0; // Brightest blue
+          const minLightness = 100; // Darkest blue
+          const lightness =
+            minLightness +
+            (1 - normalizedValue) * (maxLightness - minLightness);
+          const color = `hsl(220, 50%, ${lightness}%)`;
 
-        // References for text and rect
-        const textRef = useRef<SVGTextElement>(null);
-        const [bbox, setBbox] = useState<DOMRect | null>(null);
+          // References for text and rect
+          const textRef = useRef<SVGTextElement>(null);
+          const [bbox, setBbox] = useState<DOMRect | null>(null);
 
-        // Calculate bounding box for background rect
-        useEffect(() => {
-          if (textRef.current) {
-            setBbox(textRef.current.getBBox());
-          }
-        }, [item.label]);
+          // Calculate bounding box for background rect
+          useEffect(() => {
+            if (textRef.current) {
+              setBbox(textRef.current.getBBox());
+            }
+          }, [item.label]);
 
-        return (
-          <g key={index}>
-            {/* Arc */}
-            <path
-              d={path}
-              fill={color}
-              stroke="#060020"
-              strokeWidth="4"
-              className="segment"
-            ></path>
-            {/* Background Rect for Fancy Tooltip */}
-            {bbox && (
-              <rect
-                x={arcXEnd - bbox.width / 2 - 5} // Padding
-                y={arcYEnd - bbox.height / 2 - 5} // Padding
-                width={bbox.width + 20} // Padding
-                height={bbox.height + 10} // Padding
-                fill="rgb(0, 0, 0)" // Semi-transparent black
-                rx="5" // Rounded corners
-                ry="5"
+          return (
+            <g key={index}>
+              {/* Arc */}
+              <path
+                d={path}
+                fill={color}
+                stroke="#060020"
+                strokeWidth="4"
+                className="segment"
+              ></path>
+              {/* Background Rect for Fancy Tooltip */}
+              {bbox && (
+                <rect
+                  x={arcXEnd - bbox.width / 2 - 5} // Padding
+                  y={arcYEnd - bbox.height / 2 - 5} // Padding
+                  width={bbox.width + 20} // Padding
+                  height={bbox.height + 10} // Padding
+                  fill="rgb(0, 0, 0)" // Semi-transparent black
+                  rx="5" // Rounded corners
+                  ry="5"
+                  opacity="0" // Initially hidden
+                  style={{
+                    pointerEvents: "none", // Prevent interaction with the background
+                    transition: "opacity 0.3s ease",
+                  }}
+                  className="tooltip-background"
+                />
+              )}
+              {/* Fancy Tooltip-like Title on Hover */}
+              <text
+                ref={textRef}
+                className="pie-segment-title"
+                x={arcXEnd + 5}
+                y={arcYEnd + 5}
+                textAnchor="middle"
+                fill="#fff"
+                fontSize="12"
+                fontWeight="bold"
                 opacity="0" // Initially hidden
                 style={{
-                  pointerEvents: "none", // Prevent interaction with the background
-                  transition: "opacity 0.3s ease",
+                  pointerEvents: "none", // Prevent interaction with the title
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
                 }}
-                className="tooltip-background"
-              />
-            )}
-            {/* Fancy Tooltip-like Title on Hover */}
-            <text
-              ref={textRef}
-              className="pie-segment-title"
-              x={arcXEnd + 5}
-              y={arcYEnd + 5}
-              textAnchor="middle"
-              fill="#fff"
-              fontSize="12"
-              fontWeight="bold"
-              opacity="0" // Initially hidden
-              style={{
-                pointerEvents: "none", // Prevent interaction with the title
-                transition: "opacity 0.3s ease, transform 0.3s ease",
-              }}
-            >
-              {`(${item.value})`} {item.label}
-            </text>
+              >
+                {`(${item.value})`} {item.label}
+              </text>
 
-            {/* Line from arc midpoint to label */}
-            <line
-              x1={arcMidX}
-              y1={arcMidY}
-              x2={arcXEnd}
-              y2={arcYEnd}
-              stroke="#fff"
-              strokeWidth="1"
-            />
+              {displayLabels && (
+                <>
+                  {/* Line from arc midpoint to label */}
+                  <line
+                    x1={arcMidX}
+                    y1={arcMidY}
+                    x2={arcXEnd}
+                    y2={arcYEnd}
+                    stroke="#fff"
+                    strokeWidth="1"
+                  />
 
-            {/* Arc Label */}
-            <text
-              x={labelX}
-              y={labelY}
-              textAnchor="middle"
-              fill="#fff"
-              fontSize="12"
-              fontWeight="bold"
-              className="label"
-            >
-              {item.label}
-            </text>
-          </g>
-        );
-      })}
+                  {/* Arc Label */}
+                  <text
+                    x={labelX}
+                    y={labelY}
+                    textAnchor="middle"
+                    fill="#fff"
+                    fontSize="12"
+                    fontWeight="bold"
+                    className="label"
+                  >
+                    {item.label}
+                  </text>
+                </>
+              )}
+            </g>
+          );
+        })}
 
       {/* Inner circle with border */}
-      <circle
-        cx={centerX}
-        cy={centerY}
-        r={baseRadius - 10}
-        fill="#0a0c28"
-        stroke="#0a0c28DD"
-        strokeWidth="40"
-      />
+      <g onClick={() => setDisplayLabels(!displayLabels)} className="centerButton">
+        <circle
+          cx={centerX}
+          cy={centerY}
+          r={baseRadius - 10}
+          fill="#0a0c28"
+          stroke="#0a0c28"
+          strokeWidth="40"
+        />
 
-      {/* Center Text */}
-      <text
-        x={centerX}
-        y={centerY + 10}
-        textAnchor="middle"
-        fill="#fff"
-        fontSize="48"
-        fontWeight="bold"
-      >
-        {data.length} {/* Number of items */}
-      </text>
-      <text
-        x={centerX}
-        y={centerY + 25}
-        textAnchor="middle"
-        fill="#aaa"
-        fontSize="10"
-      >
-        Technologies
-      </text>
+        {/* Center Text */}
+        <text
+          x={centerX}
+          y={centerY + 10}
+          textAnchor="middle"
+          fill="#fff"
+          fontSize="48"
+          fontWeight="bold"
+        >
+          {data.length} {/* Number of items */}
+        </text>
+        <text
+          x={centerX}
+          y={centerY + 25}
+          textAnchor="middle"
+          fill="#ffffff"
+          fontSize="10"
+        >
+          Technologies
+        </text>
+      </g>
     </svg>
   );
 };

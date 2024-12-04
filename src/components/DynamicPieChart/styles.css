@@ -29,3 +29,9 @@ g:hover .tooltip-background {
 g:hover .label, g:hover line {
     opacity: 0;
 }
+
+.centerButton:hover circle{
+    fill: #ff5900;
+    cursor: pointer;
+    transition: 200ms;
+}

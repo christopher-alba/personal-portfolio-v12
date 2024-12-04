@@ -31,7 +31,7 @@ g:hover .label, g:hover line {
 }
 
 .centerButton:hover circle{
-    fill: #ff5900;
+    fill: #3700ff;
     cursor: pointer;
     transition: 200ms;
 }

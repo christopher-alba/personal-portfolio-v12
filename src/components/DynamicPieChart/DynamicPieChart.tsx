@@ -164,7 +164,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
         cy={centerY}
         r={baseRadius - 10}
         fill="#0a0c28"
-        stroke="#0a0c28"
+        stroke="#0a0c28DD"
         strokeWidth="40"
       />
 

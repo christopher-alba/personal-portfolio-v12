@@ -17,7 +17,6 @@
 .segment:hover {
   fill: #ff5900;
   transition: 200ms;
-  stroke-width: 0;
 }
 
 g:hover .pie-segment-title,

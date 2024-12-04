@@ -47,7 +47,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
       style={{ width: "100%", height: "auto", background: "transparent" }}
       className={inView ? "pie-chart-enter" : ""}
     >
-      {data.map((item, index) => {
+      {data.sort((a,b) => a.value - b.value).map((item, index) => {
         const startAngle = index * anglePerSegment;
         const endAngle = startAngle + anglePerSegment;
         const midpointAngle = (startAngle + endAngle) / 2; // Angle at the center of the arc
@@ -68,11 +68,11 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
         const arcYEnd = centerY + labelRadius * Math.sin(midpointAngle) * 0.9;
 
         const path = calculateArcPath(startAngle, endAngle, radius);
-        const maxLightness = 100; // Brightest blue
-        const minLightness = 10; // Darkest blue
+        const maxLightness = 0; // Brightest blue
+        const minLightness = 100; // Darkest blue
         const lightness =
           minLightness + (1 - normalizedValue) * (maxLightness - minLightness);
-        const color = `hsl(246, 100%, ${lightness}%)`;
+        const color = `hsl(220, 50%, ${lightness}%)`;
 
         // References for text and rect
         const textRef = useRef<SVGTextElement>(null);
@@ -91,7 +91,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
             <path
               d={path}
               fill={color}
-              stroke="#ffffff"
+              stroke="#060020"
               strokeWidth="4"
               className="segment"
             ></path>
@@ -164,7 +164,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
         cy={centerY}
         r={baseRadius - 10}
         fill="#0a0c28"
-        stroke="white"
+        stroke="#0a0c28"
         strokeWidth="40"
       />
 

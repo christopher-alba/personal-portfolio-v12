@@ -22,6 +22,9 @@ const chartData = [
   { label: "AWS", value: 4 },
   { label: "Unity", value: 3 },
   { label: "Blender", value: 3 },
+  { label: "Figma", value: 3 },
+  { label: "Git", value: 3 },
+  { label: "Python", value: 1 },
 ];
 
 function App() {

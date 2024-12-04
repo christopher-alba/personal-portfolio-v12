@@ -45,8 +45,12 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
       height={1000}
       viewBox="0 0 700 700"
       preserveAspectRatio="xMidYMid meet"
-      style={{ width: "100%", height: "auto", background: "transparent" }}
-      className={inView ? "pie-chart-enter" : ""}
+      style={{
+        width: "100%",
+        height: "auto",
+        background: "transparent",
+      }}
+      className={`${inView ? "pie-chart-enter" : ""} ${displayLabels ? "" : "enlarged"}`}
     >
       {data
         .sort((a, b) => a.value - b.value)
@@ -168,7 +172,10 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
         })}
 
       {/* Inner circle with border */}
-      <g onClick={() => setDisplayLabels(!displayLabels)} className="centerButton">
+      <g
+        onClick={() => setDisplayLabels(!displayLabels)}
+        className="centerButton"
+      >
         <circle
           cx={centerX}
           cy={centerY}
@@ -186,6 +193,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
           fill="#fff"
           fontSize="48"
           fontWeight="bold"
+          className="centerText"
         >
           {data.length} {/* Number of items */}
         </text>
@@ -195,6 +203,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
           textAnchor="middle"
           fill="#ffffff"
           fontSize="10"
+          className="centerText"
         >
           Technologies
         </text>

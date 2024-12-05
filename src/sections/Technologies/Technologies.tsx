@@ -3,7 +3,7 @@ import PieChart from "./components/DynamicPieChart/DynamicPieChart";
 import { chartData } from "./data";
 import Container from "../../components/Container/Container";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import "./technologies.css";
+import "./technologies.scss";
 
 const Technologies: FC = () => {
   return (

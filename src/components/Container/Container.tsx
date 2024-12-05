@@ -1,5 +1,5 @@
 import { CSSProperties, FC, ReactNode } from "react";
-import "./container.css";
+import "./container.scss";
 
 const Container: FC<{
   children: ReactNode;

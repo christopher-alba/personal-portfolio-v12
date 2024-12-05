@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "./sectionTitle.css";
+import "./sectionTitle.scss";
 
 const SectionTitle: FC<{ title: string; number: number }> = ({
   title,

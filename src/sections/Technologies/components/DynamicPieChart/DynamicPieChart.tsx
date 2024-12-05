@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { FC, useEffect, useRef, useState } from "react";
-import "./styles.css";
+import "./styles.scss";
 import { useInView } from "react-intersection-observer";
 
 const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {

@@ -3,7 +3,7 @@
 }
 
 .segment:hover {
-	fill: #3700ff;
+	fill: var(--blue-main);
 	transition: 200ms;
 }
 
@@ -20,13 +20,13 @@ g:hover line {
 }
 
 .centerButton:hover circle {
-	fill: white;
+	fill: var(--text-main-light);
 	cursor: pointer;
 	transition: 200ms;
 }
 
 .centerButton:hover .centerText {
-	fill: #0a0c28;
+	fill: var(--bg-main-dark);
 }
 
 .enlarged {

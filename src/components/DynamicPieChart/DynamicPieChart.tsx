@@ -107,7 +107,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 							<path
 								d={path}
 								fill={color}
-								stroke="#060020"
+								stroke="var(--bg-main-dark)"
 								strokeWidth="4"
 								className="segment"
 							></path>
@@ -118,7 +118,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 									y={arcYEnd - bbox.height / 2 - 5} // Padding
 									width={bbox.width + 20} // Padding
 									height={bbox.height + 10} // Padding
-									fill="rgb(255, 255, 255)" // Semi-transparent black
+									fill="var(--text-main-light)" // Semi-transparent black
 									rx="5" // Rounded corners
 									ry="5"
 									opacity="0" // Initially hidden
@@ -136,9 +136,9 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 								x={arcXEnd + 5}
 								y={arcYEnd + 5}
 								textAnchor="middle"
-								fill="black"
+								fill="var(--text-main-dark)"
 								fontSize="12"
-								fontWeight="bold"
+								fontWeight="light"
 								opacity="0" // Initially hidden
 								style={{
 									pointerEvents: "none", // Prevent interaction with the title
@@ -157,7 +157,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 										y1={arcMidY}
 										x2={arcXEnd}
 										y2={arcYEnd}
-										stroke="#fff"
+										stroke="var(--text-main-light)"
 										strokeWidth="1"
 									/>
 
@@ -166,7 +166,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 										x={labelX}
 										y={labelY}
 										textAnchor="middle"
-										fill="#fff"
+										fill="var(--text-main-light)"
 										fontSize="12"
 										fontWeight="bold"
 										className="label"
@@ -188,8 +188,8 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 					cx={centerX}
 					cy={centerY}
 					r={baseRadius - 10}
-					fill="#0a0c28"
-					stroke="#0a0c28"
+					fill="var(--bg-main-dark)"
+					stroke="var(--bg-main-dark)"
 					strokeWidth="40"
 				/>
 
@@ -198,7 +198,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 					x={centerX}
 					y={centerY + 10}
 					textAnchor="middle"
-					fill="#fff"
+					fill="var(--text-main-light)"
 					fontSize="48"
 					fontWeight="bold"
 					className="centerText"
@@ -209,7 +209,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 					x={centerX}
 					y={centerY + 25}
 					textAnchor="middle"
-					fill="#ffffff"
+					fill="var(--text-main-light)"
 					fontSize="10"
 					className="centerText"
 				>

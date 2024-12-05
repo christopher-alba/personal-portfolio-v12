@@ -26,7 +26,7 @@ g:hover line {
 }
 
 .centerButton:hover .centerText {
-	fill: var(--bg-main-dark);
+	fill: var(--bg-main-lighter);
 }
 
 .enlarged {

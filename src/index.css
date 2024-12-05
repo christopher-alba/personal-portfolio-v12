@@ -2,8 +2,8 @@
   --bg-main-dark: #060020;
   --text-main-light: white;
   --text-main-dark: black;
-  --blue-main: #3700FF;
-  --bg-main-lighter: #0E003F;
+  --blue-main: #3700ff;
+  --bg-main-lighter: #0e003f;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -15,4 +15,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
 }

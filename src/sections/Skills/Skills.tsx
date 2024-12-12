@@ -5,7 +5,7 @@ import { skills } from "./data";
 
 const Skills: FC = () => {
   return (
-    <Container className="skills-container">
+    <Container className="skills-container" >
       <div className="flex-wrapper">
         <div className="skills-heading-wrapper">
           <h1 className="skills-heading heading">
@@ -14,7 +14,7 @@ const Skills: FC = () => {
         </div>
         <div>
           {skills.map((skill) => (
-            <div className="skills-skill">
+            <div className="skills-skill" data-aos="fade-left">
               <h1>{skill.title}</h1>
               <div className="skills-points">
                 {skill.points.map((point) => (

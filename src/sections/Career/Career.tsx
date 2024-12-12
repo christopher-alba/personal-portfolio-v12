@@ -11,7 +11,7 @@ const Career: FC = () => {
       </div>
       <div className="timeline">
         {timelineItems.map((item, index) => (
-          <div className="timeline-item" key={index}>
+          <div className="timeline-item" key={index} data-aos="fade-up">
             <div
               className="timeline-icon"
               style={{ background: index === 0 ? "var(--blue-main)" : "" }}

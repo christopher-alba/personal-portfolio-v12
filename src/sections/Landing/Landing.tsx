@@ -1,21 +1,38 @@
 import { FC } from "react";
 import "./landing.scss";
 import Container from "../../components/Container/Container";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
 
 const Landing: FC = () => {
   return (
     <Container className="landing-container">
       <div className="landing-heading-div">
-        <h1 className="landing-name">Christopher Alba</h1>
-        <h1 className="landing-title">SOFTWARE</h1>
-        <h1 className="landing-title-2">
+        <h1 className="landing-name animated fade-slide-in">
+          Christopher Alba
+        </h1>
+        <h1 className="landing-title animated fade-slide-in delay-1">
+          SOFTWARE
+        </h1>
+        <h1 className="landing-title-2 animated fade-slide-in delay-2">
           <span className="landing-text-no-wrap">ENGINEER +</span>
         </h1>
-        <h1 className="landing-speciality">WEB DEVELOPER</h1>
+        <h1 className="landing-speciality animated fade-slide-in delay-3">
+          WEB DEVELOPER
+        </h1>
       </div>
       <div className="landing-content-div">
-        <img src="./images/grad-photo-web.png" alt="" />
-        <div className="landing-about">
+        <div className="landing-img-wrapper">
+          <div className="landing-img-overlay animated fade-in">
+            <FontAwesomeIcon icon={faChevronRight} className="landing-icon" />
+          </div>
+          <img
+            src="./images/grad-photo-web.png"
+            alt=""
+            className="animated zoom-in delay-1"
+          />
+        </div>
+        <div className="landing-about animated fade-in delay-2">
           <div>
             <h1 className="heading">ABOUT</h1>
             <p>
@@ -35,10 +52,10 @@ const Landing: FC = () => {
             <h4>Based in New Zealand</h4>
           </div>
         </div>
-        <div className="landing-attributes">
-          <h1>UX Focused</h1>
-          <h1>Business Driven</h1>
-          <h1>Results Oriented</h1>
+        <div className="landing-attributes animated fade-in delay-3">
+          <h1 data-aos="fade-left">UX Focused</h1>
+          <h1 data-aos="fade-left">Business Driven</h1>
+          <h1 data-aos="fade-left">Results Oriented</h1>
         </div>
       </div>
     </Container>

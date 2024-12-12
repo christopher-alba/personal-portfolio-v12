@@ -1,30 +1,89 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { FC, useEffect, useRef, useState } from "react";
 import "./styles.scss";
-import { useInView } from "react-intersection-observer";
-
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 const PieChart: FC<{ data: ChartData[]; themeName: string }> = ({
   data,
   themeName,
 }) => {
-  const [inView, setInView] = useState(false);
-  const [displayLabels, setDisplayLabels] = useState(true);
-  const { ref, inView: isInView } = useInView({
-    triggerOnce: true, // Trigger animation only once when in view
-    threshold: 0.5, // Trigger when 50% of the component is in view
-  });
-
-  // When the component is in view, update the state
-  if (isInView && !inView) {
-    setInView(true);
-  }
-
   const totalSegments = data.length;
   const anglePerSegment = (2 * Math.PI) / totalSegments; // Equal angle for each segment
   const centerX = 400; // SVG center x-coordinate
   const centerY = 400; // SVG center y-coordinate
   const baseRadius = 100; // Base radius of the chart
   const maxRadius = 300; // Maximum radius for the largest value
+
+  useGSAP(() => {
+    console.log("TESTING");
+
+    const initialPaths = data.map((_, index) => {
+      const startAngle = index * anglePerSegment;
+      const endAngle = startAngle + anglePerSegment;
+      return calculateArcPath(startAngle, endAngle, baseRadius); // Base radius path
+    });
+
+    const finalPaths = data.map((item, index) => {
+      const startAngle = index * anglePerSegment;
+      const endAngle = startAngle + anglePerSegment;
+      const normalizedValue =
+        item.value / Math.max(...data.map((d) => d.value));
+      const finalRadius =
+        baseRadius + normalizedValue * (maxRadius - baseRadius); // Final radius path
+      return calculateArcPath(startAngle, endAngle, finalRadius);
+    });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".pie-chart",
+          start: "top 80%",
+          end: "bottom top",
+          scrub: false,
+        },
+      })
+      .fromTo(
+        ".pie-chart",
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+        }
+      )
+      .fromTo(
+        ".segment",
+        {
+          attr: {
+            d: (index: number) => {
+              console.log(initialPaths[index], index);
+
+              return initialPaths[index];
+            },
+          },
+        }, // Start with initial path
+        {
+          attr: { d: (index: number) => finalPaths[index] }, // Animate to final path
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "power2.out",
+        }
+      )
+      .fromTo(
+        ".label",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "power2.out",
+        }
+      );
+  });
 
   // Helper function to calculate SVG arc paths
   const calculateArcPath = (
@@ -37,14 +96,15 @@ const PieChart: FC<{ data: ChartData[]; themeName: string }> = ({
     const endX = centerX + outerRadius * Math.cos(endAngle);
     const endY = centerY + outerRadius * Math.sin(endAngle);
 
-    return `M ${centerX},${centerY} L ${startX},${startY} A ${outerRadius},${outerRadius} 0 ${
+    let path = `M ${centerX},${centerY} L ${startX},${startY} A ${outerRadius},${outerRadius} 0 ${
       endAngle - startAngle > Math.PI ? 1 : 0
     } 1 ${endX},${endY} Z`;
+    console.log(path);
+    return path;
   };
 
   return (
     <svg
-      ref={ref} // This ref triggers the inView callback
       viewBox="0 0 800 800"
       preserveAspectRatio="xMidYMid meet"
       style={{
@@ -52,9 +112,7 @@ const PieChart: FC<{ data: ChartData[]; themeName: string }> = ({
         height: "auto",
         background: "transparent",
       }}
-      className={`${inView ? "pie-chart-enter" : ""} ${
-        displayLabels ? "" : "enlarged"
-      }`}
+      className={`pie-chart`}
     >
       {data
         .sort((a, b) => a.value - b.value)
@@ -135,44 +193,40 @@ const PieChart: FC<{ data: ChartData[]; themeName: string }> = ({
                   transition: "opacity 0.3s ease, transform 0.3s ease",
                 }}
               >
-                {`(${item.value})`} {item.label}
+                {`(${item.value})`}
               </text>
 
-              {displayLabels && (
-                <>
-                  {/* Line from arc midpoint to label */}
-                  <line
-                    x1={arcMidX}
-                    y1={arcMidY}
-                    x2={arcXEnd}
-                    y2={arcYEnd}
-                    stroke="var(--text-main)"
-                    strokeWidth="1"
-                  />
+              <>
+                {/* Line from arc midpoint to label */}
+                <line
+                  x1={arcMidX}
+                  y1={arcMidY}
+                  x2={arcXEnd}
+                  y2={arcYEnd}
+                  stroke="var(--text-main)"
+                  strokeWidth="1"
+                  className="label"
+                />
 
-                  {/* Arc Label */}
-                  <text
-                    x={labelX}
-                    y={labelY}
-                    textAnchor="middle"
-                    fill="var(--text-main)"
-                    fontSize="12"
-                    fontWeight="bold"
-                    className="label"
-                  >
-                    {item.label}
-                  </text>
-                </>
-              )}
+                {/* Arc Label */}
+                <text
+                  x={labelX}
+                  y={labelY}
+                  textAnchor="middle"
+                  fill="var(--text-main)"
+                  fontSize="12"
+                  fontWeight="bold"
+                  className="label"
+                >
+                  {item.label}
+                </text>
+              </>
             </g>
           );
         })}
 
       {/* Inner circle with border */}
-      <g
-        onClick={() => setDisplayLabels(!displayLabels)}
-        className="centerButton"
-      >
+      <g className="centerButton">
         <circle
           cx={centerX}
           cy={centerY}

@@ -1,35 +1,44 @@
 .pie-chart-enter {
-	animation: chartAnimation 1s ease-out forwards;
+  animation: chartAnimation 1s ease-out forwards;
 }
 
 .segment:hover {
-	fill: var(--blue-main);
-	transition: 200ms;
+  fill: var(--blue-main);
+  transition: 200ms;
 }
 
 g:hover .pie-segment-title,
 g:hover .tooltip-background {
-	opacity: 1;
-	transform: translateY(0); /* Move title into place */
-	font-size: 14px; /* Fancy golden color */
-	transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: translateY(0); /* Move title into place */
+  font-size: 14px; /* Fancy golden color */
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 g:hover .label,
 g:hover line {
-	opacity: 0;
+  opacity: 0;
 }
 
 .centerButton:hover circle {
-	fill: var(--text-main);
-	cursor: pointer;
-	transition: 200ms;
+  fill: var(--text-main);
+  cursor: pointer;
+  transition: 200ms;
 }
 
 .centerButton:hover .centerText {
-	fill: var(--bg-main);
+  fill: var(--bg-main);
 }
 
 .enlarged {
-	transform: scale(1.3);
-	transition: 300ms;
+  transform: scale(1.3);
+  transition: 300ms;
+}
+
+@keyframes chartAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

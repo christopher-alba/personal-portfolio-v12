@@ -11,6 +11,7 @@
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 .dark-theme {
@@ -18,8 +19,9 @@ body {
   --bg-main-transparent: #00000086; /* Dark background for the main area */
   --bg-secondary: #222222; /* Dark secondary background */
   --text-main: #ffffff; /* Light text color */
+  --text-main-transparent: rgba(255, 255, 255, 0.555);
   --text-secondary: rgb(0, 0, 0); /* Light secondary text */
-  --text-secondary-transparent: rgba(0, 0, 0, 0.473); 
+  --text-secondary-transparent: rgba(0, 0, 0, 0.473);
   --blue-main: #bbffff; /* Complementary light blue */
   --blue-50: #0d0e14;
   --blue-100: #0c0f1a;
@@ -42,9 +44,10 @@ body {
   --bg-main: #ffffff;
   --bg-main-transparent: #ffffff83;
   --bg-secondary: #e4e4e4;
+  --text-main-transparent: rgba(0, 0, 0, 0.637);
   --text-main: black;
   --text-secondary: rgb(255, 255, 255);
-  --text-secondary-transparent: rgba(255, 255, 255, 0.473); 
+  --text-secondary-transparent: rgba(255, 255, 255, 0.473);
   --blue-main: #3700ff;
   --blue-50: #f1f4ff;
   --blue-100: #e4e9ff;
@@ -66,7 +69,9 @@ body {
 .flex-wrapper {
   display: flex;
 }
-
+p {
+  color: var(--text-main-transparent);
+}
 .heading {
   font-size: 4rem;
   margin: 0;
@@ -92,5 +97,4 @@ body {
     font-size: 2rem !important;
     line-height: 30px;
   }
-  
 }

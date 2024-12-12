@@ -43,8 +43,10 @@ const Technologies: FC<{ themeName: string }> = ({ themeName }) => {
                 return (
                   <div style={{ display: "flex", width: "100%", alignItems:"center" }}>
                     <p style={{fontSize: "0.7rem", width: "6rem", textAlign: "right", whiteSpace: "nowrap", marginRight: "10px"}}>{tech.label}</p>
-                    <div style={{ height: "10px", width: "100%" }}>
+                    <div style={{ height: "10px", width: "100%", overflow: 'hidden' }}>
                       <div
+                       data-aos="fade-right"
+                       data-aos-offset="10px"
                         style={{
                           width: (tech.value / 10) * 100 + "%",
                           height: "10px",

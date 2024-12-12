@@ -19,6 +19,7 @@ body {
   --bg-secondary: #222222; /* Dark secondary background */
   --text-main: #ffffff; /* Light text color */
   --text-secondary: rgb(0, 0, 0); /* Light secondary text */
+  --text-secondary-transparent: rgba(0, 0, 0, 0.473); 
   --blue-main: #bbffff; /* Complementary light blue */
   --blue-50: #0d0e14;
   --blue-100: #0c0f1a;
@@ -43,6 +44,7 @@ body {
   --bg-secondary: #e4e4e4;
   --text-main: black;
   --text-secondary: rgb(255, 255, 255);
+  --text-secondary-transparent: rgba(255, 255, 255, 0.473); 
   --blue-main: #3700ff;
   --blue-50: #f1f4ff;
   --blue-100: #e4e9ff;

@@ -14,7 +14,7 @@ const Technologies: FC<{ themeName: string }> = ({ themeName }) => {
             <span style={{ whiteSpace: "nowrap" }}>COMFORT +</span> USAGE
           </h1>
         </div>
-        <p>
+        <p className="technology-description">
           My skills range from frontend to backend technologies. I have more
           professional experience developing enterprise level backend solutions,
           but spend most of my own time outside of work developing in the

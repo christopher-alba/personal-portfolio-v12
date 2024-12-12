@@ -3,7 +3,12 @@
 
   .skills-heading-wrapper {
     width: 45%;
-
+    position: sticky;
+    top: 46px;
+    background: var(--bg-main);
+    padding: 20px 0;
+    z-index: 1;
+    width: 100%;
     .skills-heading {
       span {
         white-space: nowrap;
@@ -19,7 +24,7 @@
     border-bottom: 1px solid var(--text-main);
     padding: 20px 0;
     &:last-of-type {
-        border-bottom: none;
+      border-bottom: none;
     }
     .skills-points {
       flex-wrap: wrap;

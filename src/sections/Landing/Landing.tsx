@@ -7,12 +7,14 @@ const Landing: FC = () => {
     <Container className="landing-container">
       <div className="landing-heading-div">
         <h1 className="landing-name">Christopher Alba</h1>
-        <h1 className="landing-title">
-          SOFTWARE <span className="landing-text-no-wrap">ENGINEER +</span>
+        <h1 className="landing-title">SOFTWARE</h1>
+        <h1 className="landing-title-2">
+          <span className="landing-text-no-wrap">ENGINEER +</span>
         </h1>
         <h1 className="landing-speciality">WEB DEVELOPER</h1>
       </div>
       <div className="landing-content-div">
+        <img src="./images/grad-photo-web.png" alt="" />
         <div className="landing-about">
           <div>
             <h1 className="heading">ABOUT</h1>
@@ -33,7 +35,6 @@ const Landing: FC = () => {
             <h4>Based in New Zealand</h4>
           </div>
         </div>
-        <img src="./images/grad-photo-web.png" alt="" />
         <div className="landing-attributes">
           <h1>UX Focused</h1>
           <h1>Business Driven</h1>

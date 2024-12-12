@@ -5,6 +5,10 @@
 .technology-main-div {
   padding-top: 10rem;
 
+  .technology-description{
+    width: 50%;
+  }
+
   .technology-chart-wrapper {
     width: 100%;
   }
@@ -19,6 +23,9 @@
 
 @media (max-width: 1400px) {
   .technology-main-div .technology-description-wrapper {
+    width: 100%;
+  }
+  .technology-main-div .technology-description{
     width: 100%;
   }
 }

@@ -11,8 +11,13 @@ const Navbar: FC<{ setTheme: (theme: string) => void; theme: string }> = ({
 }) => {
   const [displayDrawer, setDisplayDrawer] = useState(false);
   const toggleTheme = () => {
-    if (theme === "light-theme") setTheme("dark-theme");
-    else setTheme("light-theme");
+    if (theme === "light-theme") {
+      setTheme("dark-theme");
+      localStorage.setItem("theme", "dark-theme");
+    } else {
+      setTheme("light-theme");
+      localStorage.setItem("theme", "light-theme");
+    }
   };
   const toggleDrawer = () => {
     setDisplayDrawer(!displayDrawer);

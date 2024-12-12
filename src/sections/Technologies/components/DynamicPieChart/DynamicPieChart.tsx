@@ -3,7 +3,10 @@ import { FC, useEffect, useRef, useState } from "react";
 import "./styles.scss";
 import { useInView } from "react-intersection-observer";
 
-const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
+const PieChart: FC<{ data: ChartData[]; themeName: string }> = ({
+  data,
+  themeName,
+}) => {
   const [inView, setInView] = useState(false);
   const [displayLabels, setDisplayLabels] = useState(true);
   const { ref, inView: isInView } = useInView({
@@ -78,8 +81,8 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 
           const path = calculateArcPath(startAngle, endAngle, radius);
           const hue = 228; // Fixed hue for the blue spectrum
-          const maxLightness = 100; // Lightest color (white)
-          const minLightness = 50; // Darkest blue
+          const maxLightness = themeName === "light-theme" ? 100 : 10; // Lightest color (white)
+          const minLightness = themeName === "light-theme" ? 10 : 100; // Darkest blue
           const lightness =
             maxLightness - normalizedValue * (maxLightness - minLightness);
           const color = `hsl(${hue}, 100%, ${lightness}%)`;
@@ -97,11 +100,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
           return (
             <g key={index}>
               {/* Arc */}
-              <path
-                d={path}
-                fill={color}
-                className="segment"
-              ></path>
+              <path d={path} fill={color} className="segment"></path>
               {/* Background Rect for Fancy Tooltip */}
               {bbox && (
                 <rect

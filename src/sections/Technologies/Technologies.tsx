@@ -2,14 +2,13 @@ import { FC } from "react";
 import PieChart from "./components/DynamicPieChart/DynamicPieChart";
 import { chartData } from "./data";
 import Container from "../../components/Container/Container";
-import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import "./technologies.scss";
 
-const Technologies: FC = () => {
+const Technologies: FC<{ themeName: string }> = ({ themeName }) => {
   return (
     <div id="technology-main-div">
       <Container>
-        <SectionTitle title="TECHNOLOGIES" number={2} />
+        <h1>Technologies</h1>
         <div id="technology-upper-div">
           <div id="technology-content-div">
             <p>
@@ -30,7 +29,7 @@ const Technologies: FC = () => {
             </p>
           </div>
           <div id="technology-graphic-div">
-            <PieChart data={chartData} />
+            <PieChart data={chartData} themeName={themeName} />
           </div>
         </div>
       </Container>

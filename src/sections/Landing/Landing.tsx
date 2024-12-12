@@ -15,7 +15,7 @@ const Landing: FC = () => {
       <div className="landing-content-div">
         <div className="landing-about">
           <div>
-            <h1>ABOUT</h1>
+            <h1 className="heading">ABOUT</h1>
             <p>
               Focused on{" "}
               <strong>

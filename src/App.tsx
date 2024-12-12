@@ -17,7 +17,7 @@ function App() {
     Aos.init();
   });
   return (
-    <div className={theme} style={{overflowX: "hidden"}}>
+    <div className={theme}>
       <Navbar theme={theme} setTheme={setTheme} />
       <Landing />
       <Skills />

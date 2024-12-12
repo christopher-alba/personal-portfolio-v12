@@ -20,13 +20,13 @@ g:hover line {
 }
 
 .centerButton:hover circle {
-	fill: var(--text-main-light);
+	fill: var(--text-main);
 	cursor: pointer;
 	transition: 200ms;
 }
 
 .centerButton:hover .centerText {
-	fill: var(--bg-main-lighter);
+	fill: var(--bg-main);
 }
 
 .enlarged {

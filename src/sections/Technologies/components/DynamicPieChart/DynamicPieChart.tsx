@@ -78,8 +78,8 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
 
           const path = calculateArcPath(startAngle, endAngle, radius);
           const hue = 228; // Fixed hue for the blue spectrum
-          const maxLightness = 50; // Lightest color (white)
-          const minLightness = 100; // Darkest blue
+          const maxLightness = 100; // Lightest color (white)
+          const minLightness = 50; // Darkest blue
           const lightness =
             maxLightness - normalizedValue * (maxLightness - minLightness);
           const color = `hsl(${hue}, 100%, ${lightness}%)`;
@@ -109,7 +109,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
                   y={arcYEnd - bbox.height / 2 - 5} // Padding
                   width={bbox.width + 20} // Padding
                   height={bbox.height + 10} // Padding
-                  fill="var(--text-main-light)" // Semi-transparent black
+                  fill="var(--text-main)" // Semi-transparent black
                   rx="5" // Rounded corners
                   ry="5"
                   opacity="0" // Initially hidden
@@ -127,7 +127,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
                 x={arcXEnd + 5}
                 y={arcYEnd + 5}
                 textAnchor="middle"
-                fill="var(--text-main-dark)"
+                fill="var(--text-secondary)"
                 fontSize="12"
                 fontWeight="light"
                 opacity="0" // Initially hidden
@@ -147,7 +147,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
                     y1={arcMidY}
                     x2={arcXEnd}
                     y2={arcYEnd}
-                    stroke="var(--text-main-light)"
+                    stroke="var(--text-main)"
                     strokeWidth="1"
                   />
 
@@ -156,7 +156,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
                     x={labelX}
                     y={labelY}
                     textAnchor="middle"
-                    fill="var(--text-main-light)"
+                    fill="var(--text-main)"
                     fontSize="12"
                     fontWeight="bold"
                     className="label"
@@ -178,8 +178,8 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
           cx={centerX}
           cy={centerY}
           r={baseRadius - 10}
-          fill="var(--bg-main-lighter)"
-          stroke="var(--bg-main-lighter)"
+          fill="var(--bg-main)"
+          stroke="var(--bg-main)"
           strokeWidth="40"
         />
 
@@ -188,7 +188,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
           x={centerX}
           y={centerY + 10}
           textAnchor="middle"
-          fill="var(--text-main-light)"
+          fill="var(--text-main)"
           fontSize="48"
           fontWeight="bold"
           className="centerText"
@@ -199,7 +199,7 @@ const PieChart: FC<{ data: ChartData[] }> = ({ data }) => {
           x={centerX}
           y={centerY + 25}
           textAnchor="middle"
-          fill="var(--text-main-light)"
+          fill="var(--text-main)"
           fontSize="10"
           className="centerText"
         >

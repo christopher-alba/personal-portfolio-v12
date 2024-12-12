@@ -1,29 +1,24 @@
-#technology-main-div {
-  background: var(--bg-main);
-  padding-top: 100px;
+.technology-subtitle {
+  font-weight: 300;
 }
 
-#technology-content-div {
-  width: 30%;
-}
-#technology-graphic-div {
-  width: 70%;
+.technology-main-div {
+  padding-top: 10rem;
+
+  .technology-chart-wrapper {
+    width: 100%;
+  }
+  .technology-description-wrapper {
+    width: 50%;
+
+    h1 {
+      line-height: 30px;
+    }
+  }
 }
 
-#technology-graphic-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10rem;
-}
-
-#technology-chart-div {
-  width: 100%;
-  margin-left: auto;
-  position: relative;
-  margin-top: 100px;
-}
-
-#technology-upper-div {
-  display: flex;
+@media (max-width: 1400px) {
+  .technology-main-div .technology-description-wrapper {
+    width: 100%;
+  }
 }

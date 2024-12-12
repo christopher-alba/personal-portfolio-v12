@@ -70,22 +70,27 @@ body {
 .heading {
   font-size: 4rem;
   margin: 0;
+  line-height: 60px;
 }
 @media (max-width: 1400px) {
   .heading {
     font-size: 3rem !important;
+    line-height: 50px;
+  }
+  .flex-wrapper {
+    flex-direction: column;
   }
 }
 @media (max-width: 1000px) {
   .heading {
     font-size: 2rem !important;
+    line-height: 40px;
   }
 }
 @media (max-width: 600px) {
   .heading {
     font-size: 1.5rem !important;
+    line-height: 30px;
   }
-  .flex-wrapper {
-    flex-direction: column;
-  }
+  
 }

@@ -19,6 +19,12 @@ const Navbar: FC<{ setTheme: (theme: string) => void; theme: string }> = ({
       localStorage.setItem("theme", "light-theme");
     }
   };
+
+  const handleNavigation = (destination: string) => {
+    var target = document.getElementsByClassName(destination)[0];
+    target.scrollIntoView({ behavior: "smooth" });
+  };
+
   const toggleDrawer = () => {
     setDisplayDrawer(!displayDrawer);
   };
@@ -47,12 +53,12 @@ const Navbar: FC<{ setTheme: (theme: string) => void; theme: string }> = ({
               <FontAwesomeIcon icon={displayDrawer ? faClose : faBars} />
             </button>
             <div>
-              <button className="nav-shortcut">About</button>
-              <button className="nav-shortcut">Skills</button>
-              <button className="nav-shortcut">Tech</button>
-              <button className="nav-shortcut">Career</button>
-              <button className="nav-shortcut">Education</button>
-              <button className="nav-shortcut">Contact</button>
+              <button className="nav-shortcut" onClick={() => handleNavigation("landing-container")}>About</button>
+              <button className="nav-shortcut" onClick={() => handleNavigation("skills-container")}>Skills</button>
+              <button className="nav-shortcut" onClick={() => handleNavigation("technology-main-div")}>Tech</button>
+              <button className="nav-shortcut" onClick={() => handleNavigation("career-container")}>Career</button>
+              <button className="nav-shortcut" onClick={() => handleNavigation("education-container")}>Education</button>
+              <button className="nav-shortcut" onClick={() => handleNavigation("contact-main-div")}>Contact</button>
             </div>
             <button className="nav-theme" onClick={toggleTheme}>
               {theme === "light-theme" ? "Dark Mode" : "Light Mode"}
@@ -63,12 +69,12 @@ const Navbar: FC<{ setTheme: (theme: string) => void; theme: string }> = ({
       {displayDrawer && (
         <div className="nav-drawer" onClick={toggleDrawer}>
           <Container className="nav-drawer-container">
-            <button className="nav-shortcut">About</button>
-            <button className="nav-shortcut">Skills</button>
-            <button className="nav-shortcut">Tech</button>
-            <button className="nav-shortcut">Career</button>
-            <button className="nav-shortcut">Education</button>
-            <button className="nav-shortcut">Contact</button>
+            <button className="nav-shortcut" onClick={() => handleNavigation("landing-container")}>About</button>
+            <button className="nav-shortcut" onClick={() => handleNavigation("skills-container")}>Skills</button>
+            <button className="nav-shortcut" onClick={() => handleNavigation("technology-main-div")}>Tech</button>
+            <button className="nav-shortcut" onClick={() => handleNavigation("career-container")}>Career</button>
+            <button className="nav-shortcut" onClick={() => handleNavigation("education-container")}>Education</button>
+            <button className="nav-shortcut" onClick={() => handleNavigation("contact-main-div")}>Contact</button>
           </Container>
         </div>
       )}

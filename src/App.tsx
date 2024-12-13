@@ -6,6 +6,7 @@ import Navbar from "./sections/Navbar/Navbar";
 import Career from "./sections/Career/Career";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Education from "./sections/Education/Education";
 
 function App() {
   const [theme, setTheme] = useState(
@@ -23,6 +24,7 @@ function App() {
       <Skills />
       <Technologies themeName={theme} />
       <Career />
+      <Education />
     </div>
   );
 }

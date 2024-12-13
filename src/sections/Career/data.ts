@@ -114,31 +114,4 @@ export const timelineItems: Companies = [
     ],
     website: "https://www.jasper.io/",
   },
-  {
-    summary:
-      "The phenomenal pace of change in this field makes it impossible to provide a lasting professional education based on technology alone; a Bachelor of Engineering (Honours) in Computer Systems Engineering is therefore geared to provide core skills and theoretical knowledge needed for a future-proofed approach",
-    type: "Bachelors Degree",
-    name: "University of Auckland",
-    nameShort: "UoA",
-    position: "Computer Systems Engineering Student",
-    dateString: "March 2018 - November 2022",
-    startDate: "March 2018",
-    endDate: "November 2022",
-    technologies: [
-      "React",
-      "CSS",
-      "HTML",
-      "Typescript",
-      "Java",
-      "C++",
-      "C",
-      "Matlab",
-      "R",
-      "Python",
-      "VHDL",
-      "Android Studio",
-    ],
-    website:
-      "https://www.auckland.ac.nz/en/study/study-options/find-a-study-option/computer-systems-engineering.html",
-  },
 ];

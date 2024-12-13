@@ -17,7 +17,7 @@ body {
 .dark-theme {
   --bg-main: black;
   --bg-main-transparent: #00000086; /* Dark background for the main area */
-  --bg-secondary: #222222; /* Dark secondary background */
+  --bg-secondary: #0f0f0f; /* Dark secondary background */
   --text-main: #ffffff; /* Light text color */
   --text-main-transparent: rgba(255, 255, 255, 0.836);
   --text-secondary: rgb(0, 0, 0); /* Light secondary text */
@@ -43,7 +43,7 @@ body {
 .light-theme {
   --bg-main: #ffffff;
   --bg-main-transparent: #ffffff83;
-  --bg-secondary: #e4e4e4;
+  --bg-secondary: #f3f3f3;
   --text-main-transparent: rgba(0, 0, 0, 0.836);
   --text-main: black;
   --text-secondary: rgb(255, 255, 255);

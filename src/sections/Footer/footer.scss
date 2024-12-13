@@ -1,17 +1,36 @@
 .contact-main-div {
-  min-height: 80vh;
+  padding-bottom: 5rem;
+  background: var(--bg-secondary);
+  .footer-divider-wrapper {
+    color: var(--bg-main);
+    position: relative;
+    top: -5px;
+  }
   div.footer-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
+    padding-top: 5rem;
     height: calc(100% - 153px);
+    div.footer-descriptions {
+      width: 50%;
+      padding-right: 20px;
+      .link-wrapper {
+        display: flex;
+        padding-top: 50px;
+        height: 30px;
+      }
+    }
     div.footer-content {
       padding: 20px;
-      text-align: center;
-      width: 350px;
+      text-align: right;
+      width: 50%;
       p {
-        margin: 0;
+        margin:0;
+        line-height: 10px;
+        margin-top: 10px;
+        font-size: small;
+        text-align: right;
       }
     }
     & > h1 {
@@ -19,23 +38,28 @@
     }
   }
 }
-@media (max-width: 600px) {
+
+@media (max-width: 1400px) {
   .contact-main-div div.footer-container {
     flex-direction: column;
-    div.footer-content {
-        width: 100%;
+    align-items: flex-start;
+    div.footer-content, div.footer-descriptions {
+      width: 100%;
+      box-sizing: border-box;
     }
   }
 }
 .contact-link {
-  background: var(--blue-350);
-  padding: 10px 30px;
-  color: var(--text-secondary);
+  background: var(--bg-main);
+  padding: 4px 10px;
+  width: 30%;
+  color: var(--text-main);
   text-decoration: none;
   border-radius: 5px;
-  margin-bottom: 20px;
   display: block;
+  margin-right: 10px;
   white-space: nowrap;
+  text-align: center;
   &:hover {
     opacity: 0.8;
   }
@@ -43,18 +67,15 @@
 
 .download-link {
   display: block;
+  text-align: center;
   white-space: nowrap;
+  width: 30%;
   background: var(--text-main);
-  padding: 10px 30px;
+  padding: 4px 10px;
   color: var(--text-secondary);
   text-decoration: none;
   border-radius: 5px;
   &:hover {
     opacity: 0.8;
   }
-}
-
-.code-wrapper {
-    background: var(--bg-secondary);
-    padding:50px;
 }

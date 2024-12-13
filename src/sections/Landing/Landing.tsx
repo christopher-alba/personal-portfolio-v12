@@ -9,7 +9,7 @@ const Landing: FC = () => {
     <Container className="landing-container">
       <div className="landing-heading-div">
         <h1 className="landing-name animated fade-slide-in">
-          Christopher Alba
+          Hi! My name is Christopher Alba.
         </h1>
         <h1 className="landing-title animated fade-slide-in delay-1">
           SOFTWARE

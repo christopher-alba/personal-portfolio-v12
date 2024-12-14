@@ -54,7 +54,7 @@ const Camera = () => {
     // Move the camera along the Z-axis or along a path based on the scroll position
     camera.position.z = 20 - movement; // You can modify the starting position and direction of movement
 
-    const rotationSpeed = -0.5; // Rotation sensitivity
+    const rotationSpeed = -0.125; // Rotation sensitivity
     camera.rotation.x = mousePos.y * rotationSpeed; // Rotate along X-axis based on mouse Y
     camera.rotation.y = mousePos.x * rotationSpeed; // Rotate along Y-axis based on mouse X
 

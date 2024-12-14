@@ -22,7 +22,7 @@ body {
   --text-main-transparent: rgba(255, 255, 255, 0.836);
   --text-secondary: rgb(0, 0, 0); /* Light secondary text */
   --text-secondary-transparent: rgba(0, 0, 0, 0.473);
-  --blue-main: #4662fd;/* Complementary light blue */
+  --blue-main: #4662fd; /* Complementary light blue */
   --blue-50: #0d0e14;
   --blue-100: #0c0f1a;
   --blue-150: #283241;
@@ -97,4 +97,8 @@ p {
     font-size: 2rem !important;
     line-height: 30px;
   }
+}
+
+.hide-3d {
+  background: var(--bg-main);
 }

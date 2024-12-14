@@ -87,7 +87,7 @@ function App() {
     return color;
   };
   // Map 100 Rooms
-  const rooms = Array.from({ length: 500 }, (_, index) => {
+  const rooms = Array.from({ length: 1000 }, (_, index) => {
     const xPosition = (Math.random() - 0.5) * 50; // Random X position between -25 and 25
     const yPosition = (Math.random() - 0.5) * 50; // Random Y position between 0 and 10
     const zPosition = (Math.random() - 0.5) * 150; // Random Z position between -25 and 25

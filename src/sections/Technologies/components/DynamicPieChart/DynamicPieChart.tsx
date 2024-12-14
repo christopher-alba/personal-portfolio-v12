@@ -17,7 +17,6 @@ const PieChart: FC<{ data: ChartData[]; themeName: string }> = ({
   const maxRadius = 300; // Maximum radius for the largest value
 
   useGSAP(() => {
-    console.log("TESTING");
 
     const initialPaths = data.map((_, index) => {
       const startAngle = index * anglePerSegment;
@@ -58,8 +57,6 @@ const PieChart: FC<{ data: ChartData[]; themeName: string }> = ({
         {
           attr: {
             d: (index: number) => {
-              console.log(initialPaths[index], index);
-
               return initialPaths[index];
             },
           },
@@ -99,7 +96,6 @@ const PieChart: FC<{ data: ChartData[]; themeName: string }> = ({
     let path = `M ${centerX},${centerY} L ${startX},${startY} A ${outerRadius},${outerRadius} 0 ${
       endAngle - startAngle > Math.PI ? 1 : 0
     } 1 ${endX},${endY} Z`;
-    console.log(path);
     return path;
   };
 

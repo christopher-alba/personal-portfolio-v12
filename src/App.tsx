@@ -77,14 +77,20 @@ function App() {
   });
 
   const getColorFromTheme = (theme: string) => {
-    return theme === "light-theme" ? "white" : "black";
+    let color =
+      theme === "light-theme"
+        ? `hsl(220, ${Math.floor(Math.random() * 20 + 80)}%, ${Math.floor(
+            Math.random() * 20 + 80
+          )}%)` // Hue = 200 (blue), Saturation = 80-100%, Lightness = 80-100%
+        : "black";
+    console.log(color);
+    return color;
   };
-
   // Map 100 Rooms
-  const rooms = Array.from({ length: 250 }, (_, index) => {
+  const rooms = Array.from({ length: 500 }, (_, index) => {
     const xPosition = (Math.random() - 0.5) * 50; // Random X position between -25 and 25
-    const yPosition = Math.random() * 50 - 25; // Random Y position between 0 and 10
-    const zPosition = (Math.random() - 0.5) * 50; // Random Z position between -25 and 25
+    const yPosition = (Math.random() - 0.5) * 50; // Random Y position between 0 and 10
+    const zPosition = (Math.random() - 0.5) * 150; // Random Z position between -25 and 25
 
     return (
       <Room
@@ -102,7 +108,7 @@ function App() {
         <Canvas style={{ position: "fixed", zIndex: 0 }}>
           <Camera />
           <ambientLight
-            intensity={(Math.PI / 2) * (theme === "light-theme" ? 30 : 1)}
+            intensity={(Math.PI / 2) * (theme === "light-theme" ? 10 : 1)}
           />
           <spotLight
             position={[10, 10, 1000]}
@@ -116,11 +122,11 @@ function App() {
             decay={0}
             intensity={Math.PI}
           />
-          <Physics gravity={[0,0,0]}>{rooms}</Physics>
+          <Physics gravity={[0, 0, 0]}>{rooms}</Physics>
         </Canvas>
         <div style={{ zIndex: 1, position: "relative" }}>
           <Landing />
-          <div className="hide-3d" >
+          <div className="hide-3d">
             <About />
             <Skills />
           </div>

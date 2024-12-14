@@ -1,43 +1,44 @@
 .education-container {
-    padding-top: 10rem;
-    position: relative;
-    padding-bottom: 10rem;
+  padding-top: 10rem;
+  position: relative;
+  padding-bottom: 10rem;
 }
 
 .education-inner-div {
-    width: 50%;
+  width: 50%;
 }
 .education-skill {
-    border-bottom: 1px solid var(--text-main);
-    padding: 3rem 0;
-    &:last-of-type {
-        border-bottom: none;
-    }
+  border-bottom: 1px solid var(--text-main);
+  padding: 3rem 0;
+  &:last-of-type {
+    border-bottom: none;
+  }
 }
 
 .education-container .flex-wrapper {
-    @media(max-width: 1900px){
-        flex-direction: column;
-    }
+  @media (max-width: 1900px) {
+    flex-direction: column;
+  }
 }
 
-
 .education-heading-wrapper {
-    width: 45%;
-    position: sticky;
-    top: 46px;
+  width: 45%;
+  position: sticky;
+  top: 46px;
+  @media (max-width: 1400px) {
     background: var(--bg-main);
-    padding: 20px 0;
-    z-index: 1;
-    width: 100%;
-    .education-heading {
-      span {
-        white-space: nowrap;
-      }
-      position: sticky;
-      top: 4rem;
-      margin-right: 5rem;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
   }
+  padding: 20px 0;
+  z-index: 1;
+  width: 100%;
+  .education-heading {
+    span {
+      white-space: nowrap;
+    }
+    position: sticky;
+    top: 4rem;
+    margin-right: 5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

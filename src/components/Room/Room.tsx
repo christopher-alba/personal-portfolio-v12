@@ -39,12 +39,26 @@ function Box(props: any) {
       );
     }
   });
-
+  const randomNumber = Math.random();
   // Return view, these are regular three.js elements expressed in JSX
+  console.log(props.theme);
+
   return (
     <mesh ref={meshRef} {...props}>
-      <dodecahedronGeometry args={[2 * Math.random()]} />
-      <meshStandardMaterial color={props.theme} roughness={0.5} metalness={0.9} wireframe />
+      {randomNumber < 0.3 ? (
+        <octahedronGeometry args={[2 * Math.random()]} />
+      ) : randomNumber < 0.6 ? (
+        <boxGeometry args={[2 * Math.random()]} />
+      ) : (
+        <sphereGeometry args={[2 * Math.random(), 5, 5]} />
+      )}
+
+      <meshStandardMaterial
+        color={props.theme}
+        roughness={0.3}
+        metalness={0.6}
+        wireframe
+      />
     </mesh>
   );
 }

@@ -15,7 +15,7 @@ export const skills: Skills[] = [
     title: "Database Architecture",
     points: ["Relational", "Non-Relational", "Cloud", "On-Premise"],
     summary:
-      "Whether it's the frontend or backend side of applications, I can design their architecture based on requirements; this can involve startup environments or enterprise-level solutions.",
+      "I am knowledgeable and experienced on both relational and non-relational database, and can help design their structure to help you with simple data needs.",
   },
   {
     title: "Coding",
